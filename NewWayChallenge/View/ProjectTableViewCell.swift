@@ -10,7 +10,7 @@ import UIKit
 
 class ProjectTableViewCell: UITableViewCell {
     private static let rowHeight: [UIUserInterfaceSizeClass: CGFloat] = [
-        .regular: 108,
+        .regular: 127,
         .compact: 106
     ]
     
@@ -18,6 +18,7 @@ class ProjectTableViewCell: UITableViewCell {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var forksLabel: UILabel!
     @IBOutlet weak var starsLabel: UILabel!
+    @IBOutlet weak var watchingLabel: UILabel?
     @IBOutlet weak var ownerImageView: UIImageView!
     @IBOutlet weak var ownerUsernameLabel: UILabel!
     @IBOutlet weak var ownerRealNameLabel: UILabel!

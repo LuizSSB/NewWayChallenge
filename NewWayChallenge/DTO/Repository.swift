@@ -9,11 +9,12 @@
 import Foundation
 
 class Repository: BaseDTO, QueryableEntity {    
-    var name: String?
-    var repoDescription: String?
+    var name: String!
+    var repoDescription: String!
     var forksCount: Int = 0
     var stargazersCount: Int = 0
-    var owner: RepositoryOwner?
+    var watchersCount: Int = 0
+    var owner: RepositoryOwner!
     
     override func setValue(_ value: Any?, forKey key: String) {
         super.setValue(

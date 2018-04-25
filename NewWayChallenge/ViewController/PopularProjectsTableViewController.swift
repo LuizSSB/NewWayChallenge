@@ -63,6 +63,13 @@ class PopularProjectsTableViewController:
         return ProjectTableViewCell.rowHeight(forTraits: view.traitCollection)
     }
     
+    override func viewWillTransition(
+        to size: CGSize,
+        with coordinator: UIViewControllerTransitionCoordinator
+        ) {
+        tableView.reloadData()
+    }
+    
     // MARK: - Project Controller Delegate
     
     func projecControllerWillGetEntries(_ controller: ProjectsController) {

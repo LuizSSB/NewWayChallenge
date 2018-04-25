@@ -17,6 +17,7 @@ extension ProjectTableViewCell {
         descriptionLabel.text = repository.repoDescription
         forksLabel.text = String(repository.forksCount)
         starsLabel.text = String(repository.stargazersCount)
+        watchingLabel?.text = String(repository.watchersCount)
         
         ownerUsernameLabel.text = repository.owner?.login
         
