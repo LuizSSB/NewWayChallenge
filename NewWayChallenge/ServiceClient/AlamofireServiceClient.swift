@@ -11,14 +11,6 @@ import Alamofire
 import AlamofireNetworkActivityIndicator
 import EVReflection
 
-extension DataRequest {
-    func nwc_validate() -> Self {
-        var allowedStatuses = Array<Int>(200..<300)
-        allowedStatuses.append(contentsOf: 400..<423)
-        return self.validate(statusCode: allowedStatuses)
-    }
-}
-
 class AlamofireServiceClient: ServiceClient {
     func setup() {
         NetworkActivityIndicatorManager.shared.isEnabled = true
@@ -27,7 +19,7 @@ class AlamofireServiceClient: ServiceClient {
     func getRepositories(
         of language: String, page: Int, sortedBy sortFields: [String]?,
         callback: @escaping ArrayServiceCallback<Repository>
-    ) {
+    ) -> Cancellable {
         var params: Parameters = [
             "q": "language:" + language,
             "page": page
@@ -36,7 +28,7 @@ class AlamofireServiceClient: ServiceClient {
             params["sort"] = sortFields.joined(separator: ",")
         }
         
-        AlamofireServiceClient.GETRequest(for: Repository.self, params: params)
+        return AlamofireServiceClient.GETRequest(for: Repository.self, params: params)
             .responseObject { (response: DataResponse<RepositoriesQueryResponse>) in
                 if let result = response.result.value {
                     callback(result.items, result.mainError)
@@ -44,6 +36,7 @@ class AlamofireServiceClient: ServiceClient {
                     callback(nil, ResponseError.generic);
                 }
             }
+            .nwc_asCancellable
     }
     
     private static func GETRequest<T: QueryableEntity> (
@@ -52,5 +45,27 @@ class AlamofireServiceClient: ServiceClient {
         return Alamofire
             .request(entity.url, method: .get, parameters: params ?? [:])
             .nwc_validate()
+    }
+}
+
+extension DataRequest {
+    func nwc_validate() -> Self {
+        var allowedStatuses = Array<Int>(200..<300)
+        allowedStatuses.append(contentsOf: 400..<423)
+        return self.validate(statusCode: allowedStatuses)
+    }
+    
+    var nwc_asCancellable: Cancellable {
+        return AlamofireRequestWrap(request: self)
+    }
+    
+    class AlamofireRequestWrap: Cancellable {
+        let request: DataRequest
+        init(request: DataRequest) {
+            self.request = request
+        }
+        func cancel() {
+            request.cancel()
+        }
     }
 }

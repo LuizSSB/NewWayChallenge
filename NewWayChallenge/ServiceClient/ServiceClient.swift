@@ -8,13 +8,17 @@
 
 import Foundation
 
+protocol Cancellable {
+    func cancel()
+}
+
 typealias ArrayServiceCallback<T> = ([T]?, ResponseError?) -> ()
 
 protocol ServiceClient {
     func getRepositories(
         of language: String, page: Int, sortedBy sortFields: [String]?,
         callback: @escaping ArrayServiceCallback<Repository>
-    )
+    ) -> Cancellable
     
     func setup()
 }
@@ -22,8 +26,8 @@ protocol ServiceClient {
 extension ServiceClient {
     func getPopularSwiftRepositories(
         page: Int, callback: @escaping ArrayServiceCallback<Repository>
-    ) {
-        self.getRepositories(
+    ) -> Cancellable {
+        return self.getRepositories(
             of: "Swift", page: page, sortedBy: ["stars"], callback: callback
         )
     }

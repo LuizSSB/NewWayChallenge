@@ -18,68 +18,66 @@ class ProjectsController {
         self.sortFields = sortFields
     }
     
+    private var _retryTimer: Timer?
+    private var _currentRequest: Cancellable?
     private var _repositories = [Repository]()
     private let _serviceClient = ServiceClientFactory.acquireServiceClient()
     
     weak var delegate: ProjectsControllerDelegate?
     private(set) var language: String
     private(set) var sortFields: [String]?
-    
     private(set) var currentPage = ProjectsController.initialPage;
-    private(set) var busy = false
     private(set) var hasMore = true
+    
     var count: Int {
         return _repositories.count
     }
-    var acquisitionIndex: NSInteger {
+    
+    var acquisitionIndex: Int {
+        guard _retryTimer == nil && _currentRequest == nil else {
+            return Int.max
+        }
+        
         return Int(Float(count) * 0.5)
     }
+    
     subscript(index: Int) -> Repository {
         get {
-            if index >= acquisitionIndex {
-                getMore()
+            if index >= acquisitionIndex && hasMore {
+                getPage(currentPage + 1)
             }
             
             return _repositories[index]
         }
     }
     
-    private func getMore() {
-        guard !busy && hasMore else {
-            return
-        }
-        
-        busy = true
+    private func getPage(_ page: Int) {
         delegate?.projecControllerWillGetEntries(self)
         
-        _serviceClient.getRepositories(
-            of: language, page: currentPage, sortedBy: sortFields
+        _currentRequest = _serviceClient.getRepositories(
+            of: language, page: page, sortedBy: sortFields
         ) {
             [weak self] (repos, error) in
-            if let strongSelf = self {                
-                if let error = error {
-                    strongSelf.delegate?
-                        .projectController(strongSelf, didFail: error)
-                    
-                    _ = Timer(
-                        timeInterval: ProjectsController.timeToRetry,
-                        repeats: false
-                    ) { [weak self] timer in
-                        self?.busy = true
-                        self?.getMore()
-                    }
-                } else {
-                    let fixedRepos = repos ?? []
-                    strongSelf._repositories.append(contentsOf: fixedRepos)
-                    strongSelf.currentPage += 1
-                    strongSelf.hasMore =
-                        fixedRepos.count >= ProjectsController.recordsPerPage
-                    
-                    strongSelf.delegate?
-                        .projectController(strongSelf, didGetEntries: fixedRepos)
-                    
-                    strongSelf.busy = false
-                }
+            guard let strongSelf = self else {
+                return
+            }
+            
+            strongSelf._currentRequest = nil
+            
+            if let error = error {
+                strongSelf.delegate?
+                    .projectController(strongSelf, didFail: error)
+                strongSelf.retry(page: page)
+                
+            } else {
+                let fixedRepos = repos ?? []
+                strongSelf._repositories.append(contentsOf: fixedRepos)
+                strongSelf.currentPage = page
+                strongSelf.hasMore =
+                    fixedRepos.count >= ProjectsController.recordsPerPage
+                
+                strongSelf.delegate?
+                    .projectController(strongSelf, didGetEntries: fixedRepos)
             }
         }
     }
@@ -89,11 +87,29 @@ class ProjectsController {
     }
     
     func reset() {
-        hasMore = true
-        currentPage = ProjectsController.initialPage
-        _repositories.removeAll()
+        _retryTimer?.invalidate()
+        _retryTimer = nil
         
-        getMore()
+        _currentRequest?.cancel()
+        _currentRequest = nil
+        
+        hasMore = true
+        _repositories.removeAll()
+        getPage(ProjectsController.initialPage)
+    }
+    
+    func retry(page: Int) {
+        guard page != ProjectsController.initialPage else {
+            return
+        }
+        
+        self._retryTimer = Timer(
+            timeInterval: ProjectsController.timeToRetry,
+            repeats: false
+        ) { [weak self] timer in
+            self?._retryTimer = nil
+            self?.getPage(page)
+        }
     }
 }
 
