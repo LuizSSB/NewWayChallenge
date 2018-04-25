@@ -24,6 +24,7 @@
 		6046EE34208FE79D00F09692 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6046EE33208FE79D00F09692 /* Response.swift */; };
 		6046EE36208FE83200F09692 /* ResponseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6046EE35208FE83200F09692 /* ResponseError.swift */; };
 		60D92C3B2090128E00734897 /* ServiceClientFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D92C3A2090128E00734897 /* ServiceClientFactory.swift */; };
+		60D92C392090124500734897 /* SwiftProjectsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D92C382090124500734897 /* SwiftProjectsController.swift */; };
 		618A7DDEFBBB46179364675D /* Pods_NewWayChallengeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA523E883F29C4376DE1D9E4 /* Pods_NewWayChallengeUITests.framework */; };
 		AA45F80F2B2781BE3B8CF8F9 /* Pods_NewWayChallenge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2C3CE812F1F9C8B11EFD5A9 /* Pods_NewWayChallenge.framework */; };
 /* End PBXBuildFile section */
@@ -72,6 +73,7 @@
 		6046EE33208FE79D00F09692 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		6046EE35208FE83200F09692 /* ResponseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseError.swift; sourceTree = "<group>"; };
 		60D92C3A2090128E00734897 /* ServiceClientFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceClientFactory.swift; sourceTree = "<group>"; };
+		60D92C382090124500734897 /* SwiftProjectsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftProjectsController.swift; sourceTree = "<group>"; };
 		7AF6670C391B449969D471E6 /* Pods-NewWayChallenge.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewWayChallenge.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NewWayChallenge/Pods-NewWayChallenge.debug.xcconfig"; sourceTree = "<group>"; };
 		BA523E883F29C4376DE1D9E4 /* Pods_NewWayChallengeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NewWayChallengeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E65ACC31EBD24BF3213AFE8E /* Pods-NewWayChallengeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewWayChallengeTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-NewWayChallengeTests/Pods-NewWayChallengeTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -134,6 +136,7 @@
 			children = (
 				6046EE1E208FCEE600F09692 /* DTO */,
 				6046EE21208FCEE600F09692 /* ServiceClient */,
+				60D92C372090122600734897 /* Control */,
 				6040248E208FBC4C008F4390 /* AppDelegate.swift */,
 				60402490208FBC4C008F4390 /* ViewController.swift */,
 				60402492208FBC4C008F4390 /* Main.storyboard */,
@@ -183,6 +186,14 @@
 				60D92C3A2090128E00734897 /* ServiceClientFactory.swift */,
 			);
 			path = ServiceClient;
+			sourceTree = "<group>";
+		};
+		60D92C372090122600734897 /* Control */ = {
+			isa = PBXGroup;
+			children = (
+				60D92C382090124500734897 /* SwiftProjectsController.swift */,
+			);
+			path = Control;
 			sourceTree = "<group>";
 		};
 		74566D3B0A463076A1F6A598 /* Frameworks */ = {
@@ -507,6 +518,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				60D92C392090124500734897 /* SwiftProjectsController.swift in Sources */,
 				6046EE32208FDD8400F09692 /* QueryableEntity.swift in Sources */,
 				6046EE2E208FD7B100F09692 /* ServiceClient.swift in Sources */,
 				60402491208FBC4C008F4390 /* ViewController.swift in Sources */,
