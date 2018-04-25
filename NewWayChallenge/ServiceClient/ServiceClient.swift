@@ -10,7 +10,6 @@ import Foundation
 
 typealias ArrayServiceCallback<T> = ([T]?, ResponseError?) -> ()
 
-
 protocol ServiceClient {
     func getRepositories(
         of language: String, page: Int, sortedBy sortFields: [String]?,

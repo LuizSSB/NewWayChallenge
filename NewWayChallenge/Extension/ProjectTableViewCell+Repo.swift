@@ -14,7 +14,7 @@ extension ProjectTableViewCell {
     
     func set(repository: Repository) {
         repositoryLabel.text = repository.name
-        descriptionLabel.text = repository.description
+        descriptionLabel.text = repository.repoDescription
         forksLabel.text = String(repository.forksCount ?? 0)
         starsLabel.text = String(repository.stargazersCount ?? 0)
         
