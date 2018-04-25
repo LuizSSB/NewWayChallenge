@@ -16,6 +16,16 @@
 		604024AF208FBC4C008F4390 /* NewWayChallengeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604024AE208FBC4C008F4390 /* NewWayChallengeUITests.swift */; };
 		6046EE3B208FF85800F09692 /* ProjectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6046EE38208FF85800F09692 /* ProjectTableViewCell.swift */; };
 		6046EE3C208FF85800F09692 /* PopularProjectsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6046EE3A208FF85800F09692 /* PopularProjectsTableViewController.swift */; };
+		606EE91520908EFF003F7603 /* SwiftProjectsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606EE90920908EFF003F7603 /* SwiftProjectsController.swift */; };
+		606EE91620908EFF003F7603 /* BaseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606EE90B20908EFF003F7603 /* BaseDTO.swift */; };
+		606EE91720908EFF003F7603 /* QueryableEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606EE90C20908EFF003F7603 /* QueryableEntity.swift */; };
+		606EE91820908EFF003F7603 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606EE90D20908EFF003F7603 /* Repository.swift */; };
+		606EE91920908EFF003F7603 /* RepositoryOwner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606EE90E20908EFF003F7603 /* RepositoryOwner.swift */; };
+		606EE91A20908EFF003F7603 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606EE90F20908EFF003F7603 /* Response.swift */; };
+		606EE91B20908EFF003F7603 /* ResponseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606EE91020908EFF003F7603 /* ResponseError.swift */; };
+		606EE91C20908EFF003F7603 /* AlamofireServiceClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606EE91220908EFF003F7603 /* AlamofireServiceClient.swift */; };
+		606EE91D20908EFF003F7603 /* ServiceClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606EE91320908EFF003F7603 /* ServiceClient.swift */; };
+		606EE91E20908EFF003F7603 /* ServiceClientFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606EE91420908EFF003F7603 /* ServiceClientFactory.swift */; };
 		618A7DDEFBBB46179364675D /* Pods_NewWayChallengeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA523E883F29C4376DE1D9E4 /* Pods_NewWayChallengeUITests.framework */; };
 		AA45F80F2B2781BE3B8CF8F9 /* Pods_NewWayChallenge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2C3CE812F1F9C8B11EFD5A9 /* Pods_NewWayChallenge.framework */; };
 /* End PBXBuildFile section */
@@ -56,6 +66,16 @@
 		604024B0208FBC4D008F4390 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6046EE38208FF85800F09692 /* ProjectTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectTableViewCell.swift; sourceTree = "<group>"; };
 		6046EE3A208FF85800F09692 /* PopularProjectsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopularProjectsTableViewController.swift; sourceTree = "<group>"; };
+		606EE90920908EFF003F7603 /* SwiftProjectsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftProjectsController.swift; sourceTree = "<group>"; };
+		606EE90B20908EFF003F7603 /* BaseDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseDTO.swift; sourceTree = "<group>"; };
+		606EE90C20908EFF003F7603 /* QueryableEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueryableEntity.swift; sourceTree = "<group>"; };
+		606EE90D20908EFF003F7603 /* Repository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
+		606EE90E20908EFF003F7603 /* RepositoryOwner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepositoryOwner.swift; sourceTree = "<group>"; };
+		606EE90F20908EFF003F7603 /* Response.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
+		606EE91020908EFF003F7603 /* ResponseError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseError.swift; sourceTree = "<group>"; };
+		606EE91220908EFF003F7603 /* AlamofireServiceClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlamofireServiceClient.swift; sourceTree = "<group>"; };
+		606EE91320908EFF003F7603 /* ServiceClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceClient.swift; sourceTree = "<group>"; };
+		606EE91420908EFF003F7603 /* ServiceClientFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceClientFactory.swift; sourceTree = "<group>"; };
 		7AF6670C391B449969D471E6 /* Pods-NewWayChallenge.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewWayChallenge.debug.xcconfig"; path = "Pods/Target Support Files/Pods-NewWayChallenge/Pods-NewWayChallenge.debug.xcconfig"; sourceTree = "<group>"; };
 		BA523E883F29C4376DE1D9E4 /* Pods_NewWayChallengeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NewWayChallengeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E65ACC31EBD24BF3213AFE8E /* Pods-NewWayChallengeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NewWayChallengeTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-NewWayChallengeTests/Pods-NewWayChallengeTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -116,6 +136,9 @@
 		6040248D208FBC4C008F4390 /* NewWayChallenge */ = {
 			isa = PBXGroup;
 			children = (
+				606EE90820908EFF003F7603 /* Control */,
+				606EE90A20908EFF003F7603 /* DTO */,
+				606EE91120908EFF003F7603 /* ServiceClient */,
 				6046EE37208FF85800F09692 /* View */,
 				6046EE39208FF85800F09692 /* ViewController */,
 				6040248E208FBC4C008F4390 /* AppDelegate.swift */,
@@ -159,6 +182,37 @@
 				6046EE3A208FF85800F09692 /* PopularProjectsTableViewController.swift */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		606EE90820908EFF003F7603 /* Control */ = {
+			isa = PBXGroup;
+			children = (
+				606EE90920908EFF003F7603 /* SwiftProjectsController.swift */,
+			);
+			path = Control;
+			sourceTree = "<group>";
+		};
+		606EE90A20908EFF003F7603 /* DTO */ = {
+			isa = PBXGroup;
+			children = (
+				606EE90B20908EFF003F7603 /* BaseDTO.swift */,
+				606EE90C20908EFF003F7603 /* QueryableEntity.swift */,
+				606EE90D20908EFF003F7603 /* Repository.swift */,
+				606EE90E20908EFF003F7603 /* RepositoryOwner.swift */,
+				606EE90F20908EFF003F7603 /* Response.swift */,
+				606EE91020908EFF003F7603 /* ResponseError.swift */,
+			);
+			path = DTO;
+			sourceTree = "<group>";
+		};
+		606EE91120908EFF003F7603 /* ServiceClient */ = {
+			isa = PBXGroup;
+			children = (
+				606EE91220908EFF003F7603 /* AlamofireServiceClient.swift */,
+				606EE91320908EFF003F7603 /* ServiceClient.swift */,
+				606EE91420908EFF003F7603 /* ServiceClientFactory.swift */,
+			);
+			path = ServiceClient;
 			sourceTree = "<group>";
 		};
 		74566D3B0A463076A1F6A598 /* Frameworks */ = {
@@ -483,9 +537,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				606EE91820908EFF003F7603 /* Repository.swift in Sources */,
 				6046EE3B208FF85800F09692 /* ProjectTableViewCell.swift in Sources */,
 				6040248F208FBC4C008F4390 /* AppDelegate.swift in Sources */,
+				606EE91920908EFF003F7603 /* RepositoryOwner.swift in Sources */,
+				606EE91E20908EFF003F7603 /* ServiceClientFactory.swift in Sources */,
+				606EE91A20908EFF003F7603 /* Response.swift in Sources */,
+				606EE91C20908EFF003F7603 /* AlamofireServiceClient.swift in Sources */,
 				6046EE3C208FF85800F09692 /* PopularProjectsTableViewController.swift in Sources */,
+				606EE91720908EFF003F7603 /* QueryableEntity.swift in Sources */,
+				606EE91B20908EFF003F7603 /* ResponseError.swift in Sources */,
+				606EE91520908EFF003F7603 /* SwiftProjectsController.swift in Sources */,
+				606EE91D20908EFF003F7603 /* ServiceClient.swift in Sources */,
+				606EE91620908EFF003F7603 /* BaseDTO.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
