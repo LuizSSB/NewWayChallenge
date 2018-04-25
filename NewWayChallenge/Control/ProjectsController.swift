@@ -44,21 +44,25 @@ class ProjectsController {
         }
         
         busy = true
+        delegate?.projecControllerWillGetEntries(self)
+        
         _serviceClient.getRepositories(
             of: language, page: currentPage, sortedBy: sortFields
         ) {
             [weak self] (repos, error) in
             if let strongSelf = self {                
                 if let error = error {
-                    strongSelf.delegate?.projectControllerDidFailToGetEntries(
-                        strongSelf, error: error
-                    )
+                    strongSelf.delegate?
+                        .projectController(strongSelf, didFail: error)
                 } else {
                     let fixedRepos = repos ?? []
                     strongSelf._repositories.append(contentsOf: fixedRepos)
+                    strongSelf.currentPage += 1
                     strongSelf.hasMore =
                         fixedRepos.count >= ProjectsController.recordsPerPage
-                    strongSelf.delegate?.projectControllerGotEntries(strongSelf)
+                    
+                    strongSelf.delegate?
+                        .projectController(strongSelf, didGetEntries: fixedRepos)
                 }
                 
                 strongSelf.busy = false
@@ -80,8 +84,11 @@ class ProjectsController {
 }
 
 protocol ProjectsControllerDelegate: class {
-    func projectControllerGotEntries(_ controller: ProjectsController)
-    func projectControllerDidFailToGetEntries(
-        _ controller: ProjectsController, error: ResponseError
+    func projecControllerWillGetEntries(_ controller: ProjectsController)
+    func projectController(
+        _ controller: ProjectsController, didGetEntries entries: [Repository]
+    )
+    func projectController(
+        _ controller: ProjectsController, didFail error: ResponseError
     )
 }

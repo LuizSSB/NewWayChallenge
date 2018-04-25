@@ -10,6 +10,7 @@ import UIKit
 
 class PopularProjectsTableViewController:
     UITableViewController, ProjectsControllerDelegate {
+    @IBOutlet weak var acquiringMoreIndicator: UIActivityIndicatorView!
     
     private let _controller = ProjectsController(language: "Swift");
 
@@ -39,20 +40,12 @@ class PopularProjectsTableViewController:
     override func tableView(
         _ tableView: UITableView, numberOfRowsInSection section: Int
         ) -> Int {
-        return _controller.count + (_controller.hasMore ? 1 : 0)
+        return _controller.count// + (_controller.hasMore ? 1 : 0)
     }
     
     override func tableView(
         _ tableView: UITableView, cellForRowAt indexPath: IndexPath
         ) -> UITableViewCell {
-        
-        if indexPath.row == _controller.count {
-            let cell = tableView.dequeueReusableCell(
-                withIdentifier: "MoreTableViewCell"
-            ) as! MoreTableViewCell
-            cell.activityIndicator.startAnimating()
-            return cell
-        }
         
         let cell = tableView.dequeueReusableCell(
             withIdentifier: "ProjectTableViewCell", for: indexPath
@@ -65,19 +58,31 @@ class PopularProjectsTableViewController:
     
     // MARK: - Project Controller Delegate
     
-    func projectControllerGotEntries(_ controller: ProjectsController) {
-        finish()
+    func projecControllerWillGetEntries(_ controller: ProjectsController) {
+        acquiringMoreIndicator.startAnimating()
     }
     
-    func projectControllerDidFailToGetEntries(
-        _ controller: ProjectsController, error: ResponseError
+    func projectController(
+        _ controller: ProjectsController, didGetEntries entries: [Repository]
         ) {
-        finish()        
+        finish()
+        
+        let newIndexPaths =
+            ((controller.count - entries.count)..<controller.count).map {
+                IndexPath(row: $0, section: 0)
+            }
+        tableView.insertRows(at: newIndexPaths, with: .automatic)
+    }
+    
+    func projectController(
+        _ controller: ProjectsController, didFail error: ResponseError
+        ) {
+        finish()
         showError(message: "placeholder", from: self)
     }
     
     private func finish() {
         refreshControl?.endRefreshing()
-        tableView.reloadSections(IndexSet.init(integer: 0), with: .automatic)
+        acquiringMoreIndicator.stopAnimating()
     }
 }

@@ -15,6 +15,8 @@ protocol ServiceClient {
         of language: String, page: Int, sortedBy sortFields: [String]?,
         callback: @escaping ArrayServiceCallback<Repository>
     )
+    
+    func setup()
 }
 
 extension ServiceClient {

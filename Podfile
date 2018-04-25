@@ -7,6 +7,7 @@ target 'NewWayChallenge' do
 
   # Pods for NewWayChallenge
   pod 'Alamofire', '~> 4.7'
+  pod 'AlamofireNetworkActivityIndicator', '~> 2.2'
   pod 'SDWebImage', '~> 4.0'
   pod 'EVReflection', '~> 5.5'
   pod 'EVReflection/Alamofire', '~> 5.5'

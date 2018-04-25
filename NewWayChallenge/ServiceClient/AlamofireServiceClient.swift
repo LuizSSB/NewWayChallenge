@@ -8,6 +8,7 @@
 
 import Foundation
 import Alamofire
+import AlamofireNetworkActivityIndicator
 import EVReflection
 
 extension DataRequest {
@@ -19,6 +20,10 @@ extension DataRequest {
 }
 
 class AlamofireServiceClient: ServiceClient {
+    func setup() {
+        NetworkActivityIndicatorManager.shared.isEnabled = true
+    }
+    
     func getRepositories(
         of language: String, page: Int, sortedBy sortFields: [String]?,
         callback: @escaping ArrayServiceCallback<Repository>
