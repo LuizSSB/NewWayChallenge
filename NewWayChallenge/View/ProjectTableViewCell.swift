@@ -9,6 +9,11 @@
 import UIKit
 
 class ProjectTableViewCell: UITableViewCell {
+    private static let rowHeight: [UIUserInterfaceSizeClass: CGFloat] = [
+        .regular: 108,
+        .compact: 106
+    ]
+    
     @IBOutlet weak var repositoryLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var forksLabel: UILabel!
@@ -19,7 +24,6 @@ class ProjectTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
         ownerImageView.layer.cornerRadius = ownerImageView.frame.width / 2
     }
 
@@ -29,4 +33,11 @@ class ProjectTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    static func rowHeight(forTraits traits: UITraitCollection) -> CGFloat {
+        guard let size = rowHeight[traits.horizontalSizeClass] else {
+            return rowHeight[.compact]!
+        }
+        
+        return size
+    }
 }

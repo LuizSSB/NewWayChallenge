@@ -10,6 +10,7 @@ import UIKit
 
 class PopularProjectsTableViewController:
     UITableViewController, ProjectsControllerDelegate {
+    
     @IBOutlet weak var acquiringMoreIndicator: UIActivityIndicatorView!
     
     private let _controller = ProjectsController(language: "Swift");
@@ -35,7 +36,7 @@ class PopularProjectsTableViewController:
         // Dispose of any resources that can be recreated.
     }
 
-    // MARK: - Table view data source
+    // MARK: - Table view source
     
     override func tableView(
         _ tableView: UITableView, numberOfRowsInSection section: Int
@@ -54,6 +55,12 @@ class PopularProjectsTableViewController:
         cell.set(repository: _controller[indexPath.row])
         
         return cell
+    }
+    
+    override func tableView(
+        _ tableView: UITableView, heightForRowAt indexPath: IndexPath
+        ) -> CGFloat {
+        return ProjectTableViewCell.rowHeight(forTraits: view.traitCollection)
     }
     
     // MARK: - Project Controller Delegate
