@@ -9,12 +9,26 @@
 import Foundation
 
 enum ErrorCode: String {
+    // luizssb: default
     case missing, invalid
+    
+    // luizssb: custom
+    case apiRateLimit
+    
+    // luizssb: fallback
     case unknown
 }
 
 class ResponseError: BaseDTO, Error {
-    var code: ErrorCode = .unknown
+    var code: ErrorCode
+    
+    init(code: ErrorCode = .unknown) {
+        self.code = code
+    }
+    
+    required convenience init() {
+        self.init(code: .unknown)
+    }
     
     override func setValue(_ value: Any?, forKey key: String) {
         if key == "code", let value = value as? String {

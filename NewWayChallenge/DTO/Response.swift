@@ -17,6 +17,11 @@ class Response: BaseDTO {
             return errors[0]
         }
         
+        if let message = message as NSString?,
+            message.range(of: "API rate").location != NSNotFound {
+            return ResponseError(code: .apiRateLimit)
+        }
+        
         return nil
     }
 }

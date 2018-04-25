@@ -9,10 +9,9 @@
 import Foundation
 
 class ProjectsController {
+    private static let timeToRetry: TimeInterval = 2
     private static let initialPage = 1
     private static let recordsPerPage = 30
-    static let recommendedAcquisitionIndex =
-        Int(Float(ProjectsController.recordsPerPage) * 0.75)
     
     init(language: String, sortFields: [String]? = ["stars"]) {
         self.language = language
@@ -32,14 +31,21 @@ class ProjectsController {
     var count: Int {
         return _repositories.count
     }
+    var acquisitionIndex: NSInteger {
+        return Int(Float(count) * 0.5)
+    }
     subscript(index: Int) -> Repository {
         get {
+            if index >= acquisitionIndex {
+                getMore()
+            }
+            
             return _repositories[index]
         }
     }
     
     private func getMore() {
-        if busy {
+        guard !busy && hasMore else {
             return
         }
         
@@ -54,6 +60,14 @@ class ProjectsController {
                 if let error = error {
                     strongSelf.delegate?
                         .projectController(strongSelf, didFail: error)
+                    
+                    _ = Timer(
+                        timeInterval: ProjectsController.timeToRetry,
+                        repeats: false
+                    ) { [weak self] timer in
+                        self?.busy = true
+                        self?.getMore()
+                    }
                 } else {
                     let fixedRepos = repos ?? []
                     strongSelf._repositories.append(contentsOf: fixedRepos)
@@ -63,9 +77,9 @@ class ProjectsController {
                     
                     strongSelf.delegate?
                         .projectController(strongSelf, didGetEntries: fixedRepos)
+                    
+                    strongSelf.busy = false
                 }
-                
-                strongSelf.busy = false
             }
         }
     }
