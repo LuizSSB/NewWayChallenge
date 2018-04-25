@@ -10,9 +10,9 @@ import Foundation
 import EVReflection
 
 class RepositoryOwner: BaseDTO {
-    var login: String?
+    var login: String!
     var avatarURL: URL?
-    var type: String?
+    var type: String!
     
     override func setValue(_ value: Any?, forKey key: String) {
         if key == "avatar_url", let value = value as? String {
