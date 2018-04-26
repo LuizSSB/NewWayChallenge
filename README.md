@@ -6,7 +6,7 @@ O app apresenta uma listagem com os repositórios Swift mais populares do GitHub
 Preview:
 
 ![Preview (retrato)](https://i.imgur.com/mZSz0CG.png)
-![Preview (paisagem)](https://i.imgur.com/P2u8Bm6.png)
+![Preview (paisagem)](https://i.imgur.com/q9uzPnz.png)
 
 ## Características
  - Dispositivos: iPhone, iPad;
@@ -59,6 +59,7 @@ O código da célula exibida na listagem, `ProjectTableViewCell`, está no grupo
 
 ### TODO
 
- - Testes;
+ - Testes.
 
--- Luiz S.S.Baglie
+-- Luiz Soares dos Santos Baglie
+luizssb.biz *at* gmail *dot* com 
