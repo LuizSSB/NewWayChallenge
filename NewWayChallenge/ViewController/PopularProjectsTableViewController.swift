@@ -17,6 +17,7 @@ class PopularProjectsTableViewController:
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = NSLocalizedString("Popular on GitHub", comment: "Titles");
         
         refreshControl = UIRefreshControl()
         refreshControl!
@@ -92,7 +93,7 @@ class PopularProjectsTableViewController:
         _ controller: ProjectsController, didFail error: ResponseError
         ) {
         finish()
-        showError(message: "placeholder", from: self)
+        showError(message: error.localizedCodeMessage, from: navigationController!)
     }
     
     private func finish() {

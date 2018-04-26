@@ -1,0 +1,8 @@
+/* Titles */
+"Popular on GitHub" = "Populares no GitHub";
+
+/* Errors */
+"message:missing" = "Faltam parâmetros de consulta na requisição para o GitHub.";
+"message:invalid" = "Requisição inválida para o GitHub.";
+"message:apiRateLimit" = "Limite de consultas para o GitHub temporiamente atingido.";
+"message:unknown" = "Erro desconhecido. Verifique a conexão com a internet.";
