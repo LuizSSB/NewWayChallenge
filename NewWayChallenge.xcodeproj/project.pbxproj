@@ -14,10 +14,12 @@
 		60402494208FBC4C008F4390 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60402492208FBC4C008F4390 /* Main.storyboard */; };
 		60402496208FBC4C008F4390 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 60402495208FBC4C008F4390 /* Assets.xcassets */; };
 		60402499208FBC4C008F4390 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60402497208FBC4C008F4390 /* LaunchScreen.storyboard */; };
-		604024A4208FBC4C008F4390 /* NewWayChallengeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604024A3208FBC4C008F4390 /* NewWayChallengeTests.swift */; };
 		604024AF208FBC4C008F4390 /* NewWayChallengeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 604024AE208FBC4C008F4390 /* NewWayChallengeUITests.swift */; };
 		6046EE3B208FF85800F09692 /* ProjectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6046EE38208FF85800F09692 /* ProjectTableViewCell.swift */; };
 		6046EE3C208FF85800F09692 /* PopularProjectsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6046EE3A208FF85800F09692 /* PopularProjectsTableViewController.swift */; };
+		605255E32091E52B004CB95A /* MockServiceClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605255E22091E52B004CB95A /* MockServiceClient.swift */; };
+		605255E72091F06F004CB95A /* AlamofireServiceClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605255E62091F06F004CB95A /* AlamofireServiceClientTests.swift */; };
+		605255E9209205E2004CB95A /* ProjectsControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605255E8209205E2004CB95A /* ProjectsControllerTests.swift */; };
 		606EE91620908EFF003F7603 /* BaseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606EE90B20908EFF003F7603 /* BaseDTO.swift */; };
 		606EE91720908EFF003F7603 /* QueryableEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606EE90C20908EFF003F7603 /* QueryableEntity.swift */; };
 		606EE91820908EFF003F7603 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 606EE90D20908EFF003F7603 /* Repository.swift */; };
@@ -67,13 +69,15 @@
 		60402498208FBC4C008F4390 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6040249A208FBC4C008F4390 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6040249F208FBC4C008F4390 /* NewWayChallengeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NewWayChallengeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		604024A3208FBC4C008F4390 /* NewWayChallengeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWayChallengeTests.swift; sourceTree = "<group>"; };
 		604024A5208FBC4C008F4390 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		604024AA208FBC4C008F4390 /* NewWayChallengeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NewWayChallengeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		604024AE208FBC4C008F4390 /* NewWayChallengeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWayChallengeUITests.swift; sourceTree = "<group>"; };
 		604024B0208FBC4D008F4390 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6046EE38208FF85800F09692 /* ProjectTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProjectTableViewCell.swift; sourceTree = "<group>"; };
 		6046EE3A208FF85800F09692 /* PopularProjectsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopularProjectsTableViewController.swift; sourceTree = "<group>"; };
+		605255E22091E52B004CB95A /* MockServiceClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockServiceClient.swift; sourceTree = "<group>"; };
+		605255E62091F06F004CB95A /* AlamofireServiceClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireServiceClientTests.swift; sourceTree = "<group>"; };
+		605255E8209205E2004CB95A /* ProjectsControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsControllerTests.swift; sourceTree = "<group>"; };
 		606EE90B20908EFF003F7603 /* BaseDTO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseDTO.swift; sourceTree = "<group>"; };
 		606EE90C20908EFF003F7603 /* QueryableEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueryableEntity.swift; sourceTree = "<group>"; };
 		606EE90D20908EFF003F7603 /* Repository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
@@ -167,7 +171,8 @@
 		604024A2208FBC4C008F4390 /* NewWayChallengeTests */ = {
 			isa = PBXGroup;
 			children = (
-				604024A3208FBC4C008F4390 /* NewWayChallengeTests.swift */,
+				605255E62091F06F004CB95A /* AlamofireServiceClientTests.swift */,
+				605255E8209205E2004CB95A /* ProjectsControllerTests.swift */,
 				604024A5208FBC4C008F4390 /* Info.plist */,
 			);
 			path = NewWayChallengeTests;
@@ -225,6 +230,7 @@
 				606EE91220908EFF003F7603 /* AlamofireServiceClient.swift */,
 				606EE91320908EFF003F7603 /* ServiceClient.swift */,
 				606EE91420908EFF003F7603 /* ServiceClientFactory.swift */,
+				605255E22091E52B004CB95A /* MockServiceClient.swift */,
 			);
 			path = ServiceClient;
 			sourceTree = "<group>";
@@ -574,6 +580,7 @@
 				606EE91E20908EFF003F7603 /* ServiceClientFactory.swift in Sources */,
 				606EE91A20908EFF003F7603 /* Response.swift in Sources */,
 				606EE91C20908EFF003F7603 /* AlamofireServiceClient.swift in Sources */,
+				605255E32091E52B004CB95A /* MockServiceClient.swift in Sources */,
 				6046EE3C208FF85800F09692 /* PopularProjectsTableViewController.swift in Sources */,
 				606EE91720908EFF003F7603 /* QueryableEntity.swift in Sources */,
 				606EE9232090944B003F7603 /* ProjectTableViewCell+Repo.swift in Sources */,
@@ -588,7 +595,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				604024A4208FBC4C008F4390 /* NewWayChallengeTests.swift in Sources */,
+				605255E72091F06F004CB95A /* AlamofireServiceClientTests.swift in Sources */,
+				605255E9209205E2004CB95A /* ProjectsControllerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

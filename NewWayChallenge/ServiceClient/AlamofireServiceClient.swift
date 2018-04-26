@@ -12,14 +12,30 @@ import AlamofireNetworkActivityIndicator
 import EVReflection
 
 class AlamofireServiceClient: ServiceClient {
+    static let timeoutTime: TimeInterval = 10
+    
+    private var _manager: SessionManager!
+    
     func setup() {
         NetworkActivityIndicatorManager.shared.isEnabled = true
+        
+        let configuration = URLSessionConfiguration.default
+        configuration.timeoutIntervalForResource =
+            AlamofireServiceClient.timeoutTime
+        _manager = SessionManager(configuration: configuration)
     }
     
     func getRepositories(
         of language: String, page: Int, sortedBy sortFields: [String]?,
         callback: @escaping ArrayServiceCallback<Repository>
     ) -> Cancellable {
+        guard page > 0 else {
+            defer {
+                callback(nil, ResponseError(code: .invalid))
+            }
+            return NullCancellable.shared
+        }
+        
         var params: Parameters = [
             "q": "language:" + language,
             "page": page
@@ -28,21 +44,26 @@ class AlamofireServiceClient: ServiceClient {
             params["sort"] = sortFields.joined(separator: ",")
         }
         
-        return AlamofireServiceClient.GETRequest(for: Repository.self, params: params)
+        return GETRequest(for: Repository.self, params: params)
             .responseObject { (response: DataResponse<RepositoriesQueryResponse>) in
-                if let result = response.result.value {
-                    callback(result.items, result.mainError)
-                } else {
-                    callback(nil, ResponseError.generic);
+                switch response.result {
+                case .success(let value):
+                    callback(value.items, value.mainError)
+                case .failure(let error):
+                    guard (error as NSError).code != -999 else {
+                        return
+                    }
+                    
+                    callback(nil, ResponseError.generic)
                 }
             }
             .nwc_asCancellable
     }
     
-    private static func GETRequest<T: QueryableEntity> (
+    private func GETRequest<T: QueryableEntity> (
         for entity: T.Type, params: [String: Any]?
     ) -> DataRequest {
-        return Alamofire
+        return _manager
             .request(entity.url, method: .get, parameters: params ?? [:])
             .nwc_validate()
     }

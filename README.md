@@ -1,5 +1,5 @@
 # Teste NewWay
-App iOS de teste para a vaga de *Desenvolvedor iOS Pleno*,  na empresa NewWay.
+App iOS de teste para a vaga de *Desenvolvedor iOS Pleno*, na empresa NewWay.
 
 O app apresenta uma listagem com os repositórios Swift mais populares do GitHub, ordenados pela quantidade de estrelas.
 
@@ -19,10 +19,17 @@ Preview:
 	 - EVReflection ~> 5.5;
 	 - EVReflection/Alamofire ~> 5.5;
 	 - MBProgressHUD ~> 1.1.
+ - Nenhum erro ou warning (incluindo de análise).
+
+A listagem tem rolagem infinita. Talvez, o limiar para acquisição de novos registros esteja muito alto; todavia isso é mera questão de configuração.
+
+Quando a aquisição de registros falha, tenta novamente, automaticamente, 5 segundos depois.
+
+As células para os repositórios tem especialização para dispositivos/orientações com largura *regular*: suas subviews são maiores e é exibido o label de seguidores do projeto.
 
 ## Composição principal
 ### Data Transfer Objects
-O grupo *DTO* contém os DTOs do projeto, i.e., mapeamento dos objetos JSON envolvidos nas requisições para Swift. 
+O grupo *DTO* contém os DTOs do projeto, i.e., mapeamento dos objetos JSON, envolvidos nas requisições, para Swift. 
 
 São eles:
 
@@ -42,8 +49,10 @@ Inclui:
 
  - `ServiceClient`: protocolo definindo métodos para consumir os serviços;
  - `Cancellable`: protocolo para envelopar requisições HTTP feitas por implementações de `ServiceClient` e abstrair o cancelamento delas;
+ - `NullCancellable`: implementação de `Cancellable` para null pattern;
  - `AlamofireServiceClient`: implementação de `ServiceClient` onde os serviços são consumidos utilizando a lib *Alamofire*;
- - `ServiceClientFactory`: simple factory para fornecer instâncias de `ServiceClient` a quem precisar. No caso, é retornada instância de `AlamofireServiceClient`; como essa classe é *stateless*, retorna sempre a mesma instância.
+ - `MockServiceClient`: implementação mock up de `ServiceClient`, para os testes;
+ - `ServiceClientFactory`: simple factory para fornecer instâncias de `ServiceClient` a quem precisar. No caso, como os `ServiceClient`s atuais são praticamente stateless, mantém singletons deles.
 
 ### Controller
 O grupo *Controller* contém o único controller do app, `ProjectsController`, responsável por controlar a consulta, acesso e carregamentos adicionais de repositórios. 
@@ -59,7 +68,10 @@ O código da célula exibida na listagem, `ProjectTableViewCell`, está no grupo
 
 ### TODO
 
- - Testes.
+ - Mais testes de unidade (estimar mais tempo da próxima vez, lol);
+ 	- Testar o que acontece quando um `ProjectViewController` consultando registros (ou aguardando retentativa) é resetado;
+ 	- Testar os tipos de mock up;
+ 	- Testar DTOs (desserialização/`setValue(_:forKey:)`).
+ - Testes de UI.
 
--- Luiz Soares dos Santos Baglie
-luizssb.biz *at* gmail *dot* com 
+-- Luiz Soares dos Santos Baglie (luizssb.biz *at* gmail *dot* com)
