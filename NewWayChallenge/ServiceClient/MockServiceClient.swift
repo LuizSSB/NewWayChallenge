@@ -19,6 +19,7 @@ class MockServiceClient: ServiceClient {
         var data: [Repository]?
         
         if returnedElements >= 0 {
+            data = []
             data?.append(contentsOf: (0..<returnedElements).map {
                 idx -> Repository in
                 let strIdx = String(idx)
@@ -38,6 +39,7 @@ class MockServiceClient: ServiceClient {
             })
         }
         return MockCancellable(callback: callback, data: data, fails: fails)
+            .prepare()
     }
     
     func setup() {

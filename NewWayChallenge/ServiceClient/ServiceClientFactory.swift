@@ -19,7 +19,7 @@ class ServiceClientFactory {
         .mockUp: MockServiceClient(),
     ]
     
-    static let defaultClientType: ServiceClientType = .alamofire
+    static var defaultClientType: ServiceClientType = .alamofire
     
     static func acquireServiceClient(
         ofType type: ServiceClientType = ServiceClientFactory.defaultClientType

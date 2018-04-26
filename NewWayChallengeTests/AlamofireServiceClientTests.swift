@@ -18,7 +18,8 @@ class AlamofireServiceClientTests: XCTestCase {
     static let invalidPage = 0
     static let expectedNumberOfResults = 30
     
-    static let needslesslyLongTimeout: TimeInterval = 11
+    static let needslesslyLongTimeout: TimeInterval =
+        AlamofireServiceClient.timeoutTime + 1
     
     var clientUnderTest: AlamofireServiceClient!
     
