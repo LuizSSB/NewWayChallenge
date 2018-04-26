@@ -51,7 +51,7 @@ class ProjectsController {
         }
     }
     
-    private func getPage(_ page: Int, warnOnfailure: Bool = false) {
+    private func getPage(_ page: Int, warnOnfailure: Bool = true) {
         delegate?.projecControllerWillGetEntries(self)
         
         _currentRequest = _serviceClient.getRepositories(

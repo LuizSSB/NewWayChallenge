@@ -10,13 +10,6 @@ import Foundation
 import MBProgressHUD
 
 func showError(message: String, from viewController: UIViewController) {
-//    let alert = UIAlertController(
-//        title: nil,
-//        message: message,
-//        preferredStyle: .alert
-//    )
-//    alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-//    viewController.present(alert, animated: true, completion: nil)
     let hud = MBProgressHUD.showAdded(to:viewController.view, animated:true);
     hud.mode = .text
     hud.detailsLabel.text = message

@@ -9,7 +9,8 @@
 import UIKit
 
 class PopularProjectsTableViewController:
-    UITableViewController, ProjectsControllerDelegate {
+    UITableViewController, ProjectsControllerDelegate,
+    UINavigationControllerDelegate {
     
     @IBOutlet weak var acquiringMoreIndicator: UIActivityIndicatorView!
     
@@ -18,6 +19,7 @@ class PopularProjectsTableViewController:
     override func viewDidLoad() {
         super.viewDidLoad()
         title = NSLocalizedString("Popular on GitHub", comment: "Titles");
+        navigationController?.delegate = self
         
         refreshControl = UIRefreshControl()
         refreshControl!
@@ -99,5 +101,13 @@ class PopularProjectsTableViewController:
     private func finish() {
         refreshControl?.endRefreshing()
         acquiringMoreIndicator.stopAnimating()
+    }
+    
+    // MARK: - Navigation Controller Delegate
+    
+    func navigationControllerSupportedInterfaceOrientations(
+        _ navigationController: UINavigationController
+        ) -> UIInterfaceOrientationMask {
+        return .all
     }
 }
