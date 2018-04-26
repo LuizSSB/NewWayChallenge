@@ -1,0 +1,5 @@
+/* Errors */
+"message:missing" = "The request to GitHub is missing some parameters.";
+"message:invalid" = "Invalid Request to GitHub.";
+"message:apiRateLimit" = "GitHub query limit temporarily reached.";
+"message:unknown" = "Unknown error. Check your internet connection.";
