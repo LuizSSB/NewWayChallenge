@@ -9,9 +9,9 @@
 import Foundation
 
 class ProjectsController {
-    private static let timeToRetry: TimeInterval = 5
-    private static let initialPage = 1
-    private static let recordsPerPage = 30
+    static let timeToRetry: TimeInterval = 5
+    static let initialPage = 1
+    static let recordsPerPage = 30
     
     init(language: String, sortFields: [String]? = ["stars"]) {
         self.language = language
@@ -34,11 +34,11 @@ class ProjectsController {
     }
     
     var acquisitionIndex: Int {
-        guard _retryTimer == nil && _currentRequest == nil else {
+        guard _retryTimer == nil && _currentRequest == nil && hasMore else {
             return Int.max
         }
         
-        return Int(Float(count) * 0.5)
+        return max(count - ProjectsController.recordsPerPage / 2, 0)
     }
     
     subscript(index: Int) -> Repository {

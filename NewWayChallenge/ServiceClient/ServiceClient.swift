@@ -12,6 +12,11 @@ protocol Cancellable {
     func cancel()
 }
 
+class NullCancellable: Cancellable {
+    func cancel() {}
+    static let shared = NullCancellable()
+}
+
 typealias ArrayServiceCallback<T> = ([T]?, ResponseError?) -> ()
 
 protocol ServiceClient {
