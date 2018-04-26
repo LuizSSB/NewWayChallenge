@@ -8,10 +8,27 @@
 
 import Foundation
 
+enum ServiceClientType {
+    case alamofire
+    case mockUp
+}
+
 class ServiceClientFactory {
-    private static let _serviceClient = AlamofireServiceClient()
+    private static let _serviceClient: [ServiceClientType: ServiceClient] = [
+        .alamofire: AlamofireServiceClient(),
+        .mockUp: MockServiceClient(),
+    ]
     
-    static func acquireServiceClient() -> ServiceClient {
-        return _serviceClient
+    static let defaultClientType: ServiceClientType = .alamofire
+    
+    static func acquireServiceClient(
+        ofType type: ServiceClientType = ServiceClientFactory.defaultClientType
+        ) -> ServiceClient {
+        
+        guard let client = _serviceClient[type] else {
+            fatalError("unknown service client type")
+        }
+        
+        return client
     }
 }
