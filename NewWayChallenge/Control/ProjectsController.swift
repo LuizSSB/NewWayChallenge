@@ -9,7 +9,7 @@
 import Foundation
 
 class ProjectsController {
-    private static let timeToRetry: TimeInterval = 2
+    private static let timeToRetry: TimeInterval = 5
     private static let initialPage = 1
     private static let recordsPerPage = 30
     
@@ -51,7 +51,7 @@ class ProjectsController {
         }
     }
     
-    private func getPage(_ page: Int) {
+    private func getPage(_ page: Int, warnOnfailure: Bool = false) {
         delegate?.projecControllerWillGetEntries(self)
         
         _currentRequest = _serviceClient.getRepositories(
@@ -65,8 +65,10 @@ class ProjectsController {
             strongSelf._currentRequest = nil
             
             if let error = error {
-                strongSelf.delegate?
-                    .projectController(strongSelf, didFail: error)
+                if (warnOnfailure) {
+                    strongSelf.delegate?
+                        .projectController(strongSelf, didFail: error)
+                }
                 strongSelf.retry(page: page)
                 
             } else {
@@ -103,12 +105,12 @@ class ProjectsController {
             return
         }
         
-        self._retryTimer = Timer(
-            timeInterval: ProjectsController.timeToRetry,
+        self._retryTimer = Timer.scheduledTimer(
+            withTimeInterval: ProjectsController.timeToRetry,
             repeats: false
         ) { [weak self] timer in
             self?._retryTimer = nil
-            self?.getPage(page)
+            self?.getPage(page, warnOnfailure: false)
         }
     }
 }
